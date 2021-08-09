@@ -7,9 +7,7 @@ public class MainErnährung {
 	 */
 	public static void main(String[] args) {
 
-		new Console(new List());
-			
-			
-	
+		new Dashboard(new List());
+
 	}
 }
