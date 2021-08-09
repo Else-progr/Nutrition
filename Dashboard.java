@@ -11,6 +11,7 @@ public class Dashboard implements ActionListener{
 	private JButton search;
 	private JLabel foodLabel;
 	List foodList;
+	private JTable table;
 
 	
 	Dashboard(List food){
@@ -18,7 +19,7 @@ public class Dashboard implements ActionListener{
 		this.foodList = food;
 		
 		window = new JFrame("Lebensmittel");
-		window.setSize(600, 1000);
+		window.setSize(600, 600);
 		window.setLayout(null);
 		
 		JLabel inputBoxLabel = new JLabel("Lebensmittel");
@@ -40,9 +41,9 @@ public class Dashboard implements ActionListener{
 		foodLabel.setBounds(50, 80, 300, 70);
 		window.add(foodLabel);
 
-		output = new JTextArea();
-		output.setBounds(50, 150, 500, 700);
-		window.add(output);
+//		output = new JTextArea();
+//		output.setBounds(50, 150, 500, 700);
+//		window.add(output);
 		
 		window.setVisible(true);
 		
@@ -53,7 +54,7 @@ public class Dashboard implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 
-		output.setText("");
+//		output.setText("");
 
 		String foodChoice = null;
 
@@ -66,10 +67,25 @@ public class Dashboard implements ActionListener{
 
 		NutrientValue value = foodList.food.get(foodChoice);
 
-		// TODO Ausgabe in Tabelle anordnen
-		for ( String i : value.nutrientValues.keySet() )
-			output.setText( output.getText()+""+i+": "+value.nutrientValues.get(i)+"\n\n");
+		String[][] nutrientNameValue = new String[value.nutrientValues.size()][2];
+		int counter = 0;
+		System.out.println(value.nutrientValues.size());
 
+		// TODO Ausgabe in Tabelle anordnen
+		for ( String i : value.nutrientValues.keySet() ) {
+			nutrientNameValue[counter][0] = i;
+			nutrientNameValue[counter][1] = String.valueOf(value.nutrientValues.get(i));
+			counter++;
+//			output.setText(output.getText() + "" + i + ": " + value.nutrientValues.get(i) + "\n\n");
+		}
+
+		table = new JTable(nutrientNameValue, new String[]{"Name", "Menge"});
+//		table.setBounds(50, 150, 500, 300);
+
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setBounds(50, 150, 500, 300);
+		table.setFillsViewportHeight(true);
+		window.add(scroll);
 	}
 	
 }
