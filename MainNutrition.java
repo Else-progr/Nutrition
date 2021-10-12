@@ -6,7 +6,7 @@ public class MainNutrition {
      */
     public static void main(String[] args) {
 
-        new Dashboard(new List());
+        new Dashboard(new HashMapList());
 
     }
 }
