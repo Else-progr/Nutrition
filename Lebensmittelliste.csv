@@ -1,9 +1,9 @@
 Name,Fett in g,mehrfach ungesättigte FS in g,gesättigte FS in g,Kohlenhydrate,davon Zucker in g,Ballaststoffe in g,Eiweiß in g,Kalium in mg,Calcium in mg,Magnesium in mg,Eisen in mg,Zink in mg,Mangan in mg
-Goldleinsamen,43,,4.7,1,0.9,31,20,0,0,0,8.2,0,0
-Haferflocken kernig,7,0,0,58.7,1.3,10,13.5,397,43,130,5.8,4.3,4.5
-Joghurt 3.8,3.8,0,0,3.8,3.8,0,4.1,,,,,,0
-Leinsamen,36.5,26,0,7.7,0,22.7,22.3,731,206,323,0,0,0.226
-Weizenkleie,4.7,0,0,18,3.3,45,16,1350,65,490,16,9.4,13
+Goldleinsamen,43,,4.7,1,0.9,31,20,,,,8.2,,
+Haferflocken kernig,7,,,58.7,1.3,10,13.5,397,43,130,5.8,4.3,4.5
+Joghurt 3.8%,3.8,,,3.8,3.8,,4.1,,,,,,
+Leinsamen,36.5,26,,7.7,,22.7,22.3,731,206,323,,,226
+Weizenkleie,4.7,,,18,3.3,45,16,1350,65,490,16,9.4,13
 Granny Smith Apfel,,,,,,,,,,,,,
 Hafermilch,,,,,,,,,,,,,
 Speisequark,,,,,,,,,,,,,
