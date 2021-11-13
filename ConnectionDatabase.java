@@ -27,28 +27,13 @@ public class ConnectionDatabase {
 
         // auto close connection
         try (  Connection conn = DriverManager.getConnection(
-                logInDataMap.get("url:"), logInDataMap.get("user:"), logInDataMap.get("password:"))   )
+                logInDataMap.get("url:"), logInDataMap.get("user:"), logInDataMap.get("pw:"))   )
         {
             this.conn = conn;
 
             if (conn != null) {
 
                 System.out.println("Connected to the database!");
-
-//                Statement stmt = conn.createStatement();
-//
-//                    String insert = "INSERT INTO public.\"Zusammensetzung\"( \"el_ID\", \"lm_ID\", \"Anteil\" )"
-//                            + "VALUES ( "
-//                            + "(select \"el_ID\" from public.\"Nährstoffe\" where \"Name\"="
-//                            + "'"+"mehrfach ungesättigte FS" + "'"
-//                            + "),"
-//                            + "(select \"lm_ID\" from public.\"Lebensmittel\" where \"Name\"="
-//                            + "'" + "Goldleinsamen" + "'"
-//                            + "),"
-//                            + "7.0"
-//                            + ")";
-//
-//                stmt.executeUpdate( insert );
 
             } else {
                 System.out.println("Failed to make connection!");
