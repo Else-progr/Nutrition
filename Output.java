@@ -5,10 +5,6 @@ public class Output extends Dashboard{
     Output(){
     }
 
-//    Output( String s ){
-//
-//    }
-
 
     public static void setOutput(String foodChoice){
 
@@ -17,10 +13,7 @@ public class Output extends Dashboard{
             notExistingLabel.setText("");
             searchFoodLabel.setText("Nährwerte für " + foodChoice + ": ");
 
-            NutrientValues value = foodHashMapList.foodHashMap.get(foodChoice);
-
             try {
-                setNutrientNameValueArray(value);
                 createNutrientTable();
                 createScrollPane();
             }

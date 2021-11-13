@@ -15,8 +15,6 @@ public class Dashboard  extends JFrame implements ActionListener {
 
 	public static JTable nutrientTable;
 
-//	public static String foodChoice = null;
-	public static HashMapList foodHashMapList;
 	public static String[][] nutrientNameValueArray;
 
 	public ConnectionDatabase db;
@@ -26,11 +24,6 @@ public class Dashboard  extends JFrame implements ActionListener {
 
 	Dashboard(ConnectionDatabase db){
 		this.db = db;
-		createWindow();
-	}
-
-	Dashboard(HashMapList foodHashMapList){
-		Dashboard.foodHashMapList = foodHashMapList;
 		createWindow();
 	}
 
@@ -121,61 +114,19 @@ public class Dashboard  extends JFrame implements ActionListener {
 
 		var button = (JButton) event.getSource();
 
-		if( button instanceof WindowButtons) {
+		if (button instanceof WindowButtons) {
 			String foodChoice = inputBox.getText();
 			((WindowButtons) button).preformOperation(foodChoice);
 		}
 
 
-		if( button instanceof WindowButtons) {
+		if (button instanceof WindowButtons) {
 			String addFood = addFoodBox.getText();
-			if( !addFood.isEmpty() )
-			((WindowButtons) button).preformOperation(addFood);
+			if (!addFood.isEmpty())
+				((WindowButtons) button).preformOperation(addFood);
 		}
 
 	}
-
-
-//	public static void output(){
-//
-//		if ( !inputBox.getText().isEmpty()) {
-//
-//			notExistingLabel.setText("");
-//			searchFoodLabel.setText("Nährwerte für " + foodChoice + ": ");
-//
-//			NutrientValues value = foodHasMapList.foodHashMap.get(foodChoice);
-//
-//			try {
-//				setNutrientNameValueArray(value);
-//				createNutrientTable();
-//				createScrollPane();
-//			}
-//			catch (Exception e){
-//				searchFoodLabel.setText("");
-//				if( nutrientTable != null )
-//					nutrientTable.setVisible(false);
-//				notExistingLabel.setText("\""+inputBox.getText()+"\" ist nicht in der Liste enthalten!");
-//			}
-//		}
-//	}
-
-
-
-
-	public static void setNutrientNameValueArray(NutrientValues value){
-
-		int arrayRows = value.nutrientValuesHashMap.size();
-		int arrayColumns = 2;
-		nutrientNameValueArray = new String[arrayRows][arrayColumns];
-
-		int counter = 0;
-		for (String i : value.nutrientValuesHashMap.keySet()) {
-			nutrientNameValueArray[counter][0] = i;
-			nutrientNameValueArray[counter][1] = String.valueOf(value.nutrientValuesHashMap.get(i));
-			counter++;
-		}
-	}
-
 
 	public static void createNutrientTable(){
 		nutrientTable = new JTable(nutrientNameValueArray, new String[]{"Name", "Menge"});
@@ -187,14 +138,6 @@ public class Dashboard  extends JFrame implements ActionListener {
 		scroll.setBounds(50, 150, 500, 250);
 		frame.add(scroll);
 	}
-
-	public HashMapList getFoodHasMapList(){
-		return Dashboard.foodHashMapList;
-	}
-
-//	public String getFoodChoice(){
-//		return this.foodChoice;
-//	}
 
 	public JFrame getFrame(){
 		return Dashboard.frame;
