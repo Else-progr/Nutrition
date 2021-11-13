@@ -1,0 +1,3 @@
+url: [your url for Database]
+user: [your userName for Database]
+pw: [yout password for Database]
