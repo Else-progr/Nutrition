@@ -20,6 +20,6 @@ public class SearchButton extends JButton implements WindowButtons {
     //Search
     @Override
     public void preformOperation(String foodChoice){
-        Output.setOutput(foodChoice);
+        ShowNutritions.show(foodChoice);
     }
 }

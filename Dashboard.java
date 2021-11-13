@@ -7,9 +7,9 @@ import javax.swing.*;
 public class Dashboard  extends JFrame implements ActionListener {
 
 	public static JFrame frame;
-	public static JTextField inputBox;
-	public static JTextField addFoodBox;
-	public static JLabel searchFoodLabel;
+	public static JTextField searchBox;
+	public static JTextField addBox;
+	public static JLabel tableLabel;
 	public static JLabel notExistingLabel;
 	public JToolBar toolbar;
 
@@ -28,58 +28,34 @@ public class Dashboard  extends JFrame implements ActionListener {
 	}
 
 	public void createWindow(){
-		createFrame();
-		createInputBox();
+
+		frame = new StartFrame();
+
+		createBoxes();
+		createButtons();
 		createLabels();
 		createToolBar();
-		createSearchButton();
-		createAddFoodBox();
-		createAddFoodButton();
+
 		frame.setVisible(true);
 	}
 
-
-	public void createFrame() {
-		frame = new JFrame("Lebensmittel");
-		frame.setSize(600, 600);
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-
-	public void createInputBox() {
-		// TODO InputBox zusätzlich mit Auswahlfeld Choice
-		inputBox = new JTextField(50);
-		inputBox.setBounds(150, 50, 300, 30);
-		inputBox.setVisible(true);
-		frame.add(inputBox);
+	public void createBoxes() {
+		searchBox = new SearchBox();
+			frame.add(searchBox);
+		addBox = new AddFoodBox();
+			frame.add(addBox);
 	}
 
 	public void createLabels(){
-		createInputBoxLabel();
-		createFoodLabel();
-		createNotExistingLabel();
-	}
 
-	public void createInputBoxLabel() {
-		JLabel inputBoxLabel = new JLabel("Lebensmittel:");
-		inputBoxLabel.setFont(new Font("Verdana", Font.PLAIN, 14));
-		inputBoxLabel.setBounds(50, 50, 300, 30);
-		frame.add(inputBoxLabel);
-	}
-
-	public void createFoodLabel() {
-		searchFoodLabel = new JLabel();
-		searchFoodLabel.setBounds(50, 100, 500, 70);
-		searchFoodLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
-		frame.add(searchFoodLabel);
-	}
-
-	public void createNotExistingLabel(){
+		JLabel searchLabel = new SearchLabel();
+			frame.add(searchLabel);
+		tableLabel = new TableLabel();
+			frame.add(tableLabel);
 		notExistingLabel = new JLabel();
-		notExistingLabel.setBounds(50, 100, 500, 70);
-		notExistingLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
-		frame.add(notExistingLabel);
+			notExistingLabel.setBounds(50, 100, 500, 70);
+			notExistingLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+			frame.add(notExistingLabel);
 	}
 
 	public void createToolBar() {
@@ -88,24 +64,15 @@ public class Dashboard  extends JFrame implements ActionListener {
 		toolbar.setVisible(true);
 	}
 
-	public void createSearchButton(){
-		JButton button = new SearchButton();
-		inputBox.getRootPane().setDefaultButton(button);
-		frame.add(button);
-		button.addActionListener(this);
-	}
+	public void createButtons(){
+		JButton searchbutton = new SearchButton();
+			searchBox.getRootPane().setDefaultButton(searchbutton);
+			frame.add(searchbutton);
+			searchbutton.addActionListener(this);
 
-	public void createAddFoodBox() {
-		addFoodBox = new JTextField(25);
-		addFoodBox.setBounds(50, 500, 340, 30);
-		addFoodBox.setVisible(true);
-		frame.add(addFoodBox);
-	}
-
-	public void createAddFoodButton(){
 		JButton button =  new AddButton() ;
-		frame.add(button);
-		button.addActionListener(this);
+			frame.add(button);
+			button.addActionListener(this);
 	}
 
 
@@ -115,13 +82,13 @@ public class Dashboard  extends JFrame implements ActionListener {
 		var button = (JButton) event.getSource();
 
 		if (button instanceof WindowButtons) {
-			String foodChoice = inputBox.getText();
+			String foodChoice = searchBox.getText();
 			((WindowButtons) button).preformOperation(foodChoice);
 		}
 
 
 		if (button instanceof WindowButtons) {
-			String addFood = addFoodBox.getText();
+			String addFood = addBox.getText();
 			if (!addFood.isEmpty())
 				((WindowButtons) button).preformOperation(addFood);
 		}
@@ -144,7 +111,7 @@ public class Dashboard  extends JFrame implements ActionListener {
 	}
 
 	public JLabel getSearchFoodLabel(){
-		return Dashboard.searchFoodLabel;
+		return Dashboard.tableLabel;
 	}
 
 	public JTable getNutrientTable(){

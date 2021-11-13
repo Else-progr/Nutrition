@@ -22,4 +22,6 @@ public class AddButton  extends JButton implements WindowButtons {
     public void preformOperation(String addFood){
         NewTable.setTable();
     }
+
+
 }

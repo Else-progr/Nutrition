@@ -6,7 +6,7 @@ class NewTable extends Dashboard {
 
 
     public  static void setTable(){
-        Table newTable = new Table(addFoodBox.getText());
+        Table newTable = new Table(addBox.getText());
         newTable.setVisible(true);
         newTable.setSize( 500, 600 );
     }
