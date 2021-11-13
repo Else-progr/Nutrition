@@ -7,8 +7,5 @@ public class MainNutrition {
 
         ConnectionDatabase db = new ConnectionDatabase();
         new Dashboard( db );
-
-        new Dashboard(new HashMapList());
-
     }
 }
