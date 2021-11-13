@@ -5,6 +5,10 @@ public class Output extends Dashboard{
     Output(){
     }
 
+//    Output( String s ){
+//
+//    }
+
 
     public static void setOutput(String foodChoice){
 

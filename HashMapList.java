@@ -5,7 +5,7 @@ public class HashMapList {
 
 	public BufferedReader buffer = null;
 	private String line= "";
-	public LinkedHashMap<String, NutrientValues> foodHashMap = new LinkedHashMap();
+	public LinkedHashMap<String, NutrientValues> foodHashMap = new LinkedHashMap<>();
 	int counter = 0;
 	boolean booleanIsNutrientNamesSet = false;
 	NutrientNames nutrientNamesHashMap;
@@ -16,7 +16,7 @@ public class HashMapList {
 		try {
 			buffer = new BufferedReader(new FileReader("src/testing.csv"));
 			while( (line = buffer.readLine()) != null ) {
-				String product[] = line.split(","); // uses comma as separator
+				String[] product = line.split(","); // uses comma as separator
 
 				if ( !booleanIsNutrientNamesSet ) {
 					nutrientNamesHashMap = new NutrientNames(product);

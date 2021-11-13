@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
 
 
@@ -19,16 +22,20 @@ public class Dashboard  extends JFrame implements ActionListener {
 	public static HashMapList foodHashMapList;
 	public static String[][] nutrientNameValueArray;
 
+	public ConnectionDatabase db;
 
-	Dashboard(HashMapList foodHashMapList){
-		this.foodHashMapList = foodHashMapList;
+	Dashboard(){
+	}
+
+	Dashboard(ConnectionDatabase db){
+		this.db = db;
 		createWindow();
 	}
 
-	Dashboard(){
-
+	Dashboard(HashMapList foodHashMapList){
+		Dashboard.foodHashMapList = foodHashMapList;
+		createWindow();
 	}
-
 
 	public void createWindow(){
 		createFrame();
@@ -160,14 +167,14 @@ public class Dashboard  extends JFrame implements ActionListener {
 
 	public static void setNutrientNameValueArray(NutrientValues value){
 
-		int arrayRows = value.nutrientValuesHasMap.size();
+		int arrayRows = value.nutrientValuesHashMap.size();
 		int arrayColumns = 2;
 		nutrientNameValueArray = new String[arrayRows][arrayColumns];
 
 		int counter = 0;
-		for (String i : value.nutrientValuesHasMap.keySet()) {
+		for (String i : value.nutrientValuesHashMap.keySet()) {
 			nutrientNameValueArray[counter][0] = i;
-			nutrientNameValueArray[counter][1] = String.valueOf(value.nutrientValuesHasMap.get(i));
+			nutrientNameValueArray[counter][1] = String.valueOf(value.nutrientValuesHashMap.get(i));
 			counter++;
 		}
 	}
@@ -185,7 +192,7 @@ public class Dashboard  extends JFrame implements ActionListener {
 	}
 
 	public HashMapList getFoodHasMapList(){
-		return this.foodHashMapList;
+		return Dashboard.foodHashMapList;
 	}
 
 //	public String getFoodChoice(){
@@ -193,15 +200,15 @@ public class Dashboard  extends JFrame implements ActionListener {
 //	}
 
 	public JFrame getFrame(){
-		return this.frame;
+		return Dashboard.frame;
 	}
 
 	public JLabel getSearchFoodLabel(){
-		return this.searchFoodLabel;
+		return Dashboard.searchFoodLabel;
 	}
 
 	public JTable getNutrientTable(){
-		return this.nutrientTable;
+		return Dashboard.nutrientTable;
 	}
 
 }

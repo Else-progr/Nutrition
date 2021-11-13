@@ -1,16 +1,16 @@
 class NewTable extends Dashboard {
 
-    private static Table addTable;
+    private static Table newTable;
 
 
-    NewTable(){
+     NewTable(){
     }
 
 
     public  static void setTable(){
-        addTable = new Table(addFoodBox.getText(), foodHashMapList.getNutrientName());
-        addTable.setVisible(true);
-        addTable.setSize( 500, 600 );
+        newTable = new Table(addFoodBox.getText(), foodHashMapList.getNutrientName());
+        newTable.setVisible(true);
+        newTable.setSize( 500, 600 );
     }
 
 }
