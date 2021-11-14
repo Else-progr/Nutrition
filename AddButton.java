@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AddButton  extends JButton implements WindowButtons {
@@ -20,8 +22,13 @@ public class AddButton  extends JButton implements WindowButtons {
 
 
     @Override
-    public void preformOperation(String addFood, Statement stmt){
+    public void preformOperation(String addFood, Connection conn){
         NewTable.setTable();
+        try {
+            (new Queries(conn.createStatement())).insert(addFood,"davon Zucker", 3.8);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,5 +1,7 @@
 import javax.swing.*;
-import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 public class SearchButton extends JButton implements WindowButtons {
 
@@ -20,8 +22,11 @@ public class SearchButton extends JButton implements WindowButtons {
 
     //Search
     @Override
-    public void preformOperation(String foodChoice, Statement stmt){
-        ReadDatabase base = new ReadDatabase(stmt);
-        base.read(foodChoice);
+    public void preformOperation(String foodChoice, Connection conn){
+        try {
+            (new Queries(conn.createStatement())).read(foodChoice);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

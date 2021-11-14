@@ -1,9 +1,9 @@
-import java.sql.Statement;
+import java.sql.Connection;
 
 public interface WindowButtons {
 
 
     void setPlace();
 
-    void preformOperation(String choice, Statement stmt);
+    void preformOperation(String choice, Connection conn);
 }

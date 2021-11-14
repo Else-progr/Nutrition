@@ -19,7 +19,7 @@ public class Queries {
     public void read(String choice) {
 
         try{
-            String cmd = "SELECT \"L\".\"Name\" as \"lname\", \"N\".\"Name\" as \"nname\", \"Z\".\"Anteil\" " +
+            String cmd = "SELECT \"L\".\"Name\" AS \"Lname\", \"N\".\"Name\" AS \"Nname\", \"Z\".\"Anteil\" " +
                         "FROM public.\"Zusammensetzung\" AS \"Z\" " +
                         "INNER JOIN public.\"Lebensmittel\" AS \"L\" " +
                         "ON \"Z\".\"lm_ID\" = \"L\".\"lm_ID\" " +
@@ -30,32 +30,36 @@ public class Queries {
 
             ResultSet rs =  stmt.executeQuery( cmd );
 
-            int el_ID_Spalten_Nummer  = rs.findColumn("lname");
-            int lm_ID_Spalten_Nummer   = rs.findColumn("nname");
-            int portion_Spalten_Nummer   = rs.findColumn("Anteil");
+            int el_ID_ColNr  = rs.findColumn("Lname");
+            int lm_ID_ColNr   = rs.findColumn("Nname");
+            int portion_ColNr   = rs.findColumn("Anteil");
 
             boolean nameSet = false;
             while( rs.next() ){
-                String el_ID = rs.getString( el_ID_Spalten_Nummer );
-                String lm_ID = rs.getString( lm_ID_Spalten_Nummer );
-                double portion = rs.getDouble( portion_Spalten_Nummer );
+                String el_ID = rs.getString( el_ID_ColNr  );
+                String lm_ID = rs.getString( lm_ID_ColNr );
+                double portion = rs.getDouble( portion_ColNr  );
 
 //                jTextField1.setText("" + el_ID);//displaying product el in a jTextField1
 //                jTextField2.setText("" + lm_ID);//displaying product lm in a jTextField2
 //                jTextField3.setText("" + portion);//displaying product lm in a jTextField3
 
-                if(!nameSet) System.out.println("" + el_ID + ":");
-                System.out.print("   " + lm_ID);
-                System.out.println("   " + portion);
+                if(!nameSet) {
+                    System.out.println("" + el_ID + ":");
+                    nameSet =true;
+                }
+                System.out.printf("%s\t%s%n", lm_ID, portion);
 
-                nameSet =true;
+
             }
+
+            rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void insert(String foodChoice, String element, int portion) {
+    public void insert(String foodChoice, String element, double portion) {
 
         try{
 

@@ -12,7 +12,10 @@ public class MainNutrition {
 
     public static void main(String[] args) {
 
-        ConnectionDatabase db = new ConnectionDatabase();
+        SQLConnection db = new SQLConnection();
+        Connection conn = db.getConnection();
+        System.out.println(conn);
+        new Dashboard(conn);
 //        createConnection();
     }
 

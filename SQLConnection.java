@@ -7,14 +7,18 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class ConnectionDatabase {
+public class SQLConnection {
 
-    public Connection conn = null;
-    public Statement stmt;
-    public HashMap<String,String> logInDataMap = new HashMap<>();
+    public String url;
+    public String user;
+    public String pw;
 
-    ConnectionDatabase(){
+    public Connection getConnection(){
 
+        Connection conn = null;
+        HashMap<String,String> logInDataMap = new HashMap<>();
+
+        // auto close connection
         try {
             Scanner scan = new Scanner(new FileReader("src/LogInData.txt"));
             while( scan.hasNext() ) {
@@ -22,29 +26,23 @@ public class ConnectionDatabase {
                 String[] logInDataString = line.split(" "); // uses Blanc-space as separator
                 logInDataMap.put(logInDataString[0], logInDataString[1]);
             }
-        } catch(FileNotFoundException e) {
-            System.out.println("File Not Found.");
-        }
+            url = logInDataMap.get("url:");
+            user = logInDataMap.get("user:");
+            pw = logInDataMap.get("pw:");
 
-        // auto close connection
-        try (  Connection conn = DriverManager.getConnection(
-                logInDataMap.get("url:"), logInDataMap.get("user:"), logInDataMap.get("pw:"))   )
-        {
-            this.conn = conn;
+
+            conn = DriverManager.getConnection( url , user, pw );
 
             if (conn != null) {
-
                 System.out.println("Connected to the database!");
-
-                stmt = conn.createStatement();
-
-                Queries quer = new Queries(stmt);
-                quer.read("Haferflocken kernig");
 
             } else {
                 System.out.println("Failed to make connection!");
+                System.exit(-1);
             }
 
+        } catch(FileNotFoundException e) {
+            System.out.println("File Not Found.");
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
@@ -52,15 +50,9 @@ public class ConnectionDatabase {
         }
 
 
-    }
-
-    public Statement getStatment(){
-        return stmt;
-    }
-
-    public Connection getConnection(){
         return conn;
     }
+
 
 
 }
