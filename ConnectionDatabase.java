@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class ConnectionDatabase {
 
     public Connection conn = null;
+    public Statement stmt;
     public HashMap<String,String> logInDataMap = new HashMap<>();
 
     ConnectionDatabase(){
@@ -35,6 +36,11 @@ public class ConnectionDatabase {
 
                 System.out.println("Connected to the database!");
 
+                stmt = conn.createStatement();
+
+                Queries quer = new Queries(stmt);
+                quer.read("Haferflocken kernig");
+
             } else {
                 System.out.println("Failed to make connection!");
             }
@@ -46,6 +52,14 @@ public class ConnectionDatabase {
         }
 
 
+    }
+
+    public Statement getStatment(){
+        return stmt;
+    }
+
+    public Connection getConnection(){
+        return conn;
     }
 
 

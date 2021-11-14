@@ -1,5 +1,7 @@
 public interface SQL {
 
-    void sqlCmd(String choice, String element, int portion);
+    void read(String choice);
+
+    void insert(String choice, String element, int portion);
 
 }

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.sql.Statement;
 
 public class SearchButton extends JButton implements WindowButtons {
 
@@ -19,7 +20,8 @@ public class SearchButton extends JButton implements WindowButtons {
 
     //Search
     @Override
-    public void preformOperation(String foodChoice){
-        ShowNutritions.show(foodChoice);
+    public void preformOperation(String foodChoice, Statement stmt){
+        ReadDatabase base = new ReadDatabase(stmt);
+        base.read(foodChoice);
     }
 }

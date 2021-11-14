@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 import javax.swing.*;
 
 
@@ -17,13 +18,14 @@ public class Dashboard  extends JFrame implements ActionListener {
 
 	public static String[][] nutrientNameValueArray;
 
-	public ConnectionDatabase db;
+	public Statement stmt;
 
 	Dashboard(){
+		createWindow();
 	}
 
-	Dashboard(ConnectionDatabase db){
-		this.db = db;
+	Dashboard(Statement stmt){
+		this.stmt = stmt;
 		createWindow();
 	}
 
@@ -83,14 +85,14 @@ public class Dashboard  extends JFrame implements ActionListener {
 
 		if (button instanceof WindowButtons) {
 			String foodChoice = searchBox.getText();
-			((WindowButtons) button).preformOperation(foodChoice);
+			((WindowButtons) button).preformOperation(foodChoice,stmt);
 		}
 
 
 		if (button instanceof WindowButtons) {
 			String addFood = addBox.getText();
 			if (!addFood.isEmpty())
-				((WindowButtons) button).preformOperation(addFood);
+				((WindowButtons) button).preformOperation(addFood,stmt);
 		}
 
 	}

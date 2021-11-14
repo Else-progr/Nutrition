@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.sql.Statement;
 
 public class AddButton  extends JButton implements WindowButtons {
 
@@ -19,7 +20,7 @@ public class AddButton  extends JButton implements WindowButtons {
 
 
     @Override
-    public void preformOperation(String addFood){
+    public void preformOperation(String addFood, Statement stmt){
         NewTable.setTable();
     }
 
